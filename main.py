@@ -64,3 +64,16 @@ def postNew(writer: str = Form(...), title: str = Form(...), content: str = Form
     
     return RedirectResponse("/post", status_code=302)         
     
+@app.post("/post/delete/{num}")
+def delete_post(num: int, db: Session = Depends(get_db)):
+    # 1. Prepare the SQL command
+    query = text("DELETE FROM post WHERE num = :num")
+    
+    # 2. Execute with the specific ID
+    db.execute(query, {"num": num})
+    
+    # 3. Commit to save changes
+    db.commit()
+    
+    # 4. Redirect back to the list page
+    return RedirectResponse(url="/post", status_code=303)
