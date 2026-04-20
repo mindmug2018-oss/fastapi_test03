@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>templates/post/new-form.html</title>
+</head>
+<body>
+    <div class="contain">
+        <h3>new table creation</h3>
+        <form action="/post/new" method="post">
+            <label for="writer">writer</label>
+            <input type="text" name="writer" id="writer">
+            <br>
+            <label for="title">title</label>
+            <input type="text" name="title" id="title">
+            <br>
+            <label for="content">content</label>
+            <br>
+            <textarea name="content" id="content" rows="10"></textarea>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
