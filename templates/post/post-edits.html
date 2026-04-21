@@ -1,0 +1,18 @@
+<form action="/post/update/{{ post.num }}" method="post">
+    <div>
+        <label>Writer:</label>
+        <input type="text" name="writer" value="{{ post.writer }}">
+    </div>
+    
+    <div>
+        <label>Title:</label>
+        <input type="text" name="title" value="{{ post.title }}">
+    </div>
+
+    <div>
+        <label>Content:</label>
+        <textarea name="content">{{ post.content }}</textarea>
+    </div>
+
+    <button type="submit">Update Post</button>
+</form>

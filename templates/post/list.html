@@ -32,6 +32,7 @@
                     <th>제목</th>
                     <th>내용</th>
                     <th>작성일</th>
+                    <th>DELETE</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,9 +50,11 @@
                         <form action="/post/delete/{{ post.num }}" method="post" style="display:inline;">
                             <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
                         </form>
-                        
-                        <!-- ✏️ Edit Link (you can add this later) -->
-                        <a href="/post/edit/{{ post.num }}">Edit</a>
+                    </td>
+                    <td>
+                        <!-- Edit Link -->
+                        <a href="/post/post-edits/{{ post.num }}" style="margin-right: 10px;">Edit</a>
+                        </form>
                     </td>
                 </tr>
                 {% endfor %} {# 반복문의 끝을 알립니다 #}

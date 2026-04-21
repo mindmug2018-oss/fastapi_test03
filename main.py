@@ -77,3 +77,36 @@ def delete_post(num: int, db: Session = Depends(get_db)):
     
     # 4. Redirect back to the list page
     return RedirectResponse(url="/post", status_code=303)
+
+# 1. Show the Edit Page
+@app.get("/post/post-edits/{num}", response_class=HTMLResponse)
+def edit_form(num: int, request: Request, db: Session = Depends(get_db)):
+    # Find the specific post
+    query = text("SELECT num, title, content FROM post WHERE num = :num")
+    post = db.execute(query, {"num": num}).mappings().first()
+    
+    return templates.TemplateResponse(
+    request=request, 
+    name="post/post-edits.html", 
+    context={"post": post}
+    )
+
+
+# 2. Handle the Update
+@app.post("/post/update/{num}")
+def update_post(
+    num: int, 
+    writer: str = Form(...),
+    title: str = Form(...), 
+    content: str = Form(...), 
+    db: Session = Depends(get_db)
+):
+    query = text("""
+        UPDATE post 
+        SET writer = :writer, title = :title, content = :content 
+        WHERE num = :num
+    """)
+    db.execute(query, {"writer": writer, "title": title, "content": content, "num": num})
+    db.commit()
+    
+    return RedirectResponse(url="/post", status_code=303)
