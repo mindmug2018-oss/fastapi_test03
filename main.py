@@ -62,7 +62,7 @@ def postNew(writer: str = Form(...), title: str = Form(...), content: str = Form
     db.execute(query, {"writer":writer, "title":title, "content":content})
     db.commit()
     
-    return RedirectResponse("/post", status_code=302)         
+    return RedirectResponse("/post", status_code=303)         
     
 @app.post("/post/delete/{num}")
 def delete_post(num: int, db: Session = Depends(get_db)):
