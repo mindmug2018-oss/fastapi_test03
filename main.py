@@ -93,13 +93,12 @@ def edit_form(num: int, request: Request, db: Session = Depends(get_db)):
 
 
 # 2. Handle the Update
-@app.post("/post/update/{num}")
+@app.post("/post/post-edits/{num}")
 def update_post(
     num: int, 
     writer: str = Form(...),
     title: str = Form(...), 
-    content: str = Form(...),
-    created_at: str = Form(...) 
+    content: str = Form(...), 
     db: Session = Depends(get_db)
 ):
     query = text("""
