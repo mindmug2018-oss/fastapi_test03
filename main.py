@@ -82,7 +82,7 @@ def delete_post(num: int, db: Session = Depends(get_db)):
 @app.get("/post/post-edits/{num}", response_class=HTMLResponse)
 def edit_form(num: int, request: Request, db: Session = Depends(get_db)):
     # Find the specific post
-    query = text("SELECT num, title, content FROM post WHERE num = :num")
+    query = text("SELECT num, writer, title, content, created_at FROM post WHERE num = :num")
     post = db.execute(query, {"num": num}).mappings().first()
     
     return templates.TemplateResponse(
@@ -98,7 +98,8 @@ def update_post(
     num: int, 
     writer: str = Form(...),
     title: str = Form(...), 
-    content: str = Form(...), 
+    content: str = Form(...),
+    created_at: str = Form(...) 
     db: Session = Depends(get_db)
 ):
     query = text("""

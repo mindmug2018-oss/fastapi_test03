@@ -1,4 +1,4 @@
-<form action="/post/update/{{ post.num }}" method="post">
+<form action="/post/post-edits/{{ post.num }}" method="post">
     <div>
         <label>Writer:</label>
         <input type="text" name="writer" value="{{ post.writer }}">
@@ -15,4 +15,5 @@
     </div>
 
     <button type="submit">Update Post</button>
+    <button type="reset">Cancel</button>
 </form>
